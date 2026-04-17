@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Portfolio - THE PHONIXXLZ110</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Efek matrix di latar belakang */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        /* Container utama */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header & Navigasi */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #00ff00;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ff00;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #ff0000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #00ff00;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            padding: 30px 0;
+        }
+
+        .hero-info {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .hero-info h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .hero-info h1 span {
+            color: #00ff00;
+        }
+
+        .hero-info h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ff6600;
+        }
+
+        .hero-info p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+
+        .typing-text {
+            font-size: 22px;
+            color: #ff0000;
+            margin-bottom: 20px;
+            min-height: 30px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 5px solid #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.8);
+        }
+
+        /* Skills Section */
+        .section-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background-color: #00ff00;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .skill-card {
+            background-color: rgba(0, 20, 0, 0.3);
+            border: 1px solid #004400;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: #00ff00;
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #00ff00;
+        }
+
+        .skill-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .skill-card p {
+            color: #cccccc;
+            font-size: 16px;
+        }
+
+        /* Certificates Section */
+        .certificates {
+            margin-bottom: 60px;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .certificate-card {
+            background-color: rgba(0, 10, 0, 0.5);
+            border: 1px solid #003300;
+            border-radius: 5px;
+            padding: 15px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .certificate-card:hover {
+            border-color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .certificate-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #006600;
+            transition: all 0.3s;
+        }
+
+        .certificate-card:hover .certificate-img {
+            border-color: #00ff00;
+            transform: scale(1.02);
+        }
+
+        .certificate-card h3 {
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-size: 18px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .certificate-card p {
+            color: #cccccc;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .certificate-card .date {
+            color: #00ff00;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .certificate-card .issuer {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Modal untuk gambar sertifikat */
+        .certificate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 800px;
+            max-height: 90vh;
+            background-color: #001100;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 5px;
+            border: 1px solid #00aa00;
+        }
+
+        .modal-title {
+            color: #ffffff;
+            margin: 15px 0 10px;
+            font-size: 22px;
+        }
+
+        .modal-details {
+            color: #cccccc;
+            font-size: 16px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #00ff00;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-weight: bold;
+        }
+
+        .close-modal:hover {
+            color: #ff0000;
+        }
+
+        /* Pagination untuk sertifikat */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .pagination button {
+            background-color: #003300;
+            color: #00ff00;
+            border: 1px solid #00aa00;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .pagination button:hover {
+            background-color: #00aa00;
+            color: #000;
+        }
+
+        .pagination button.active {
+            background-color: #00ff00;
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #00ff00;
+            margin-top: 40px;
+            color: #cccccc;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #00ff00;
+            font-size: 24px;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            transform: scale(1.2);
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-info {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .skills-grid, .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .certificates-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        /* Animasi */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff0000;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #0000ff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(48px, 9999px, 29px, 0); }
+            15% { clip: rect(42px, 9999px, 73px, 0); }
+            20% { clip: rect(63px, 9999px, 27px, 0); }
+            25% { clip: rect(34px, 9999px, 55px, 0); }
+            30% { clip: rect(86px, 9999px, 73px, 0); }
+            35% { clip: rect(20px, 9999px, 20px, 0); }
+            40% { clip: rect(26px, 9999px, 60px, 0); }
+            45% { clip: rect(25px, 9999px, 66px, 0); }
+            50% { clip: rect(57px, 9999px, 98px, 0); }
+            55% { clip: rect(5px, 9999px, 46px, 0); }
+            60% { clip: rect(82px, 9999px, 31px, 0); }
+            65% { clip: rect(54px, 9999px, 27px, 0); }
+            70% { clip: rect(28px, 9999px, 99px, 0); }
+            75% { clip: rect(45px, 9999px, 69px, 0); }
+            80% { clip: rect(23px, 9999px, 85px, 0); }
+            85% { clip: rect(54px, 9999px, 84px, 0); }
+            90% { clip: rect(45px, 9999px, 47px, 0); }
+            95% { clip: rect(37px, 9999px, 20px, 0); }
+            100% { clip: rect(4px, 9999px, 91px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(40px, 9999px, 86px, 0); }
+            95% { clip: rect(45px, 9999px, 72px, 0); }
+            100% { clip: rect(23px, 9999px, 49px, 0); }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #001100;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00aa00;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <!-- Efek Matrix di Latar Belakang -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Modal untuk gambar sertifikat -->
+    <div id="certificateModal" class="certificate-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <img id="modalImage" src="" alt="Certificate" class="modal-img">
+            <h3 id="modalTitle" class="modal-title"></h3>
+            <p id="modalIssuer" class="modal-details"></p>
+            <p id="modalDate" class="modal-details"></p>
+            <p id="modalDescription" class="modal-details"></p>
+        </div>
+    </div>
+
+    <!-- Konten Utama -->
+    <div class="container">
+        <header>
+            <div class="logo">Muhammad Ars<span>yad Ridho</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#certificates">Certificates</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="home" class="hero">
+            <div class="hero-info">
+                <h1>Hello,I'm  <span>Muhammad Arsyad Ridho</span></h1>
+                <h2>Cyber Security | Ethical Hacking</h2>
+                <h2>AI Development | Web Development</h2>
+                <div class="typing-text" id="typingText"></div>
+                <p>Student with a strong interest in Informatics Engineering, particularly cybersecurity and AI development,Possesses a basic understanding of web security and the Linux operating system, as well as an interest in the development and application of artificial intelligence technologies,Accustomed to independent learning through hands-on practice, able to work both individually and in teams, highly motivated to learn,and committed to continuously developing IT skills.</p>
+            </div>
+            <div class="hero-image">
+                <img src="mee.jpeg" alt="Foto Profil THE PHONIXXLZ110" class="profile-img">
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2 class="section-title">SKILLS & EXPERTISE</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Cyber Security</h3>
+                    <p>Mengamankan sistem, jaringan, dan aplikasi dari serangan cyber dengan metode terkini.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Penetration Testing</h3>
+                    <p>Melakukan pengujian keamanan sistem dengan mensimulasikan serangan hacker untuk menemukan celah keamanan.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Network Security</h3>
+                    <p>Mendesain dan mengimplementasikan arsitektur jaringan yang aman dari berbagai ancaman.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Injection Analysis</h3>
+                    <p>Menganalisis dan mengidentifikasi celah serangan injection.</p>
+                </div>
+                <div class="skill-card">
+                     <i class="fab fa-python"></i>
+                     <h3>Python Development</h3>
+                    <p>Mengembangkan dan mengimplementasikan program menggunakan bahasa Python.</p>
+                 </div>
+                <div class="skill-card">
+                    <i class="fas fa-bug"></i>
+                    <h3>Vulnerability Assessment</h3>
+                    <p>Mengidentifikasi, mengklasifikasikan, dan memprioritaskan kerentanan dalam sistem komputer.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-user-secret"></i>
+                    <h3>Digital Forensics</h3>
+                    <p>Menganalisis dan menginvestigasi kejadian keamanan siber untuk mengumpulkan bukti digital.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Development</h3>
+                    <p>Mengembangkan dan mengimplementasikan solusi Artificial Intelligence.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Sensitive Data Exposure Analysis</h3>
+                    <p>Menganalisis dan mempelajari malware untuk memahami cara kerjanya dan mengembangkan pertahanan.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-quran"></i>
+                    <h3>حفظ الثلاثين جزءًا من القرآن</h3>
+                    <p>القدرة على توجيه وإدارة الحفظ، بما في ذلك الحفظ والمراجعة وتقييم الحفظ حتى اكتمال الثلاثين جزءًا..</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates" class="certificates">
+            <h2 class="section-title">CERTIFICATES & ACHIEVEMENTS</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #cccccc; font-size: 18px;">
+            <span id="currentPageInfo"></span>
+            </p>
+            
+            <div id="certificatesContainer" class="certificates-grid">
+                <!-- Certificates will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Muhammad Arsyad Ridho Portfolio. All rights reserved. | <span style="color: #00ff00;">by arsy</span></p>
+            <div class="social-links">
+                <a href="https://github.com/arsyad0711" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/muhammad-arsyad-ridho-5301b33b3"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-x"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/qr/KYYNCL54CRBMF1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/arsy_mee?igsh=bnV5eDB4aWpqN29z" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Data untuk 40 sertifikat apresiasi cyber
+        const certificatesData = [
+            // Halaman 1 (1-10)
+            {
+                id: 1,
+                title: "Certificate of Appreciation",
+                issuer: "Badan Meteorologi Klimatologi Dan Geofisika",
+                date: "Oktober 2025",
+                imageUrl: "BMKG.jpeg"
+            },
+            {
+                id: 2,
+                title: "Certificate of Appreciation",
+                issuer: "Computer Security Insident Respond Team CIMAHI",
+                date: "November 2025",
+                imageUrl: "cimahi.jpeg"
+            },
+            {
+                id: 3,
+                title: "Certificate of Competency",
+                issuer: "Belajar Dasar AI - By : DICODING",
+                date: "September 2025",
+                imageUrl: "dico ai.jpeg"
+            },
+            {
+                id: 4,
+                title: "Certificate of Appreciation",
+                issuer: "Sekolah Tinggi Manajemen Informatika dan Komputer Antar Bangsa",
+                date: "Januari 2025",
+                imageUrl: "STMIK.jpeg"
+            },
+            {
+                id: 5,
+                title: "Certificate of Appreciation",
+                issuer: "Institut Teknologi Indonesia",
+                date: "November 2025",
+                imageUrl: "ITI.jpeg"
+            },
+            {
+                id: 6,
+                title: "Certificate of Appreciation",
+                issuer: "TNI Angkatan Darat",
+                date: "Desember 2025",
+                imageUrl: "TNI.jpeg"
+            },
+            {
+                id: 7,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Muhammadiyah Semarang",
+                date: "Desember 2025",
+                imageUrl: "UNIMUS.jpeg"
+            },
+            {
+                id: 8,
+                title: "Certificate of Appreciation",
+                issuer: "Komisi Penyiaran Indonesia",
+                date: "November 2025",
+                imageUrl: "KPI.jpeg"
+            },
+            {
+                id: 9,
+                title: "Certificate of Appreciation",
+                issuer: "Kementrian Komunikasi dan Informatika",
+                date: "November 2025",
+                imageUrl: "KOMINFO KPI.jpeg"
+            },
+            {
+                id: 10,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Muhammadiya Metro",
+                date: "Oktober 2025",
+                imageUrl: "UM METRO.jpeg"
+            },
+            // Halaman 2 (11-20)
+            {
+                id: 11,
+                title: "Certificate of Appreciation",
+                issuer: "Kementrian Lingkungan Hidup",
+                date: "Oktober 2025",
+                imageUrl: "KLHK.jpeg"
+            },
+            {
+                id: 12,
+                title: "Certificate of Appreciation",
+                issuer: "Rumah Sakit Universitas Indonesia",
+                date: "September 2025",
+                imageUrl: "RS UI.jpeg"
+            },
+            {
+                id: 13,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Muhmmadiyah Malang",
+                date: "Agustus 2025",
+                imageUrl: "UMM.jpeg"
+            },
+            {
+                id: 14,
+                title: "Certificate of Appreciation",
+                issuer: "Computer Security Insident Respond Team Sukabumi",
+                date: "Oktober 2025",
+                imageUrl: "SUKABUMI.jpeg"
+            },
+            {
+                id: 15,
+                title: "Certificate of Appreciation",
+                issuer: "Computer Security Insident Respond Team Sukabumi",
+                date: "Oktober 2025",
+                imageUrl: "SUKABUMI2.jpeg"
+            },
+            {
+                id: 16,
+                title: "Certificate of Appreciation",
+                issuer: "Balai Taman Nasional Karimun Jawa",
+                date: "September 2025",
+                imageUrl: "KARIMUN.jpeg"
+            },
+            {
+                id: 17,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Nahdatul Ulama Surabaya",
+                date: "September 2025",
+                imageUrl: "UNUSA.jpeg"
+            },
+            {
+                id: 18,
+                title: "Certificate of Appreciation",
+                issuer: "Dinas Komunikasi dan Informatika Daerah Istimewa Jogja",
+                date: "November 2025",
+                imageUrl: "JOGJA.jpeg"
+            },
+            {
+                id: 19,
+                title: "Certificate of Appreciation",
+                issuer: "Balai Taman Nasional Gunung Cermai",
+                date: "September 2025",
+                imageUrl: "CERMAI.jpeg"
+            },
+            {
+                id: 20,
+                title: "Certificate of Appreciation",
+                issuer: "Badan Wakaf Indonesia",
+                date: "Oktober 2025",
+                imageUrl: "BWI.jpeg"
+            },
+            // Halaman 3 (21-30)
+            {
+                id: 21,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Subang",
+                date: "September 2025",
+                imageUrl: "UNSUB.jpeg"
+            },
+            {
+                id: 22,
+                title: "Certificate of Complete",
+                issuer: "Mikrotik Ross V7: VPN Site-to-Site - By : ID-NETWORKERS",
+                date: "Oktober 2025",
+                imageUrl: "network.jpeg"
+            },
+            {
+                id: 23,
+                title: "Certificate of Complete",
+                issuer: "Cyber Security For Intermediate Level - By : SUHU",
+                date: "September 2025",
+                imageUrl: "suhu.jpeg"
+            },
+            {
+                id: 24,
+                title: "Certificate of Complete",
+                issuer: "Cyber Security Dasar - By : ID-NETWORKERS",
+                date: "September 2025",
+                imageUrl: "id network.jpeg"
+            },
+            {
+                id: 25,
+                title: "Certificate of Complete",
+                issuer: "Cyber Security CISSP - By : CURSA",
+                date: "Desember 2025",
+                imageUrl: "cursa.jpeg"
+            },
+            {
+                id: 26,
+                title: "Certificate of Appreciation",
+                issuer: "Sekolah An-Nisa Izada",
+                date: "November 2025",
+                imageUrl: "AN NISA.jpeg"
+            },
+            {
+                id: 27,
+                title: "Certificate of Appreciation",
+                issuer: "Kementrian Pekerjaan Umum",
+                date: "November 2025",
+                imageUrl: "PUS.jpeg"
+            },
+            {
+                id: 28,
+                title: "Certificate of Appreciation",
+                issuer: "Dinas Komunikasi Dan Informatika Kota Probolinggo",
+                date: "November 2025",
+                imageUrl: "PROBOLINGGO.jpeg"
+            },
+            {
+                id: 29,
+                title: "Certificate of Appreciation",
+                issuer: "Yayasan Daarul Qur'an Indonesia ",
+                date: "September 2025",
+                imageUrl: "DAQU.jpeg"
+            },
+            // Halaman 4 (31-40)
+            {
+                id: 30,
+                title: "Certificate of Appreciation",
+                issuer: "MIN 2 Kota Banda Aceh",
+                date: "September 2025",
+                imageUrl: "MIN.jpeg"
+            },
+            {
+                id: 32,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Tanjungpura",
+                date: "Oktober 2025",
+                imageUrl: "TANJUNG.jpeg"
+            },
+            {
+                id: 33,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Islam Negri Ponorogo",
+                date: "September 2025",
+                imageUrl: "UIN.jpeg"
+            },
+            {
+                id: 34,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Negeri Manado",
+                date: "September 2025",
+                imageUrl: "UNIMA.jpeg"
+            },
+            {
+                id: 35,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Negeri Jakarta",
+                date: "Oktober 2025",
+                imageUrl: "UNJ.jpeg"
+            },
+            {
+                id: 36,
+                title: "Certificate of Appreciation",
+                issuer: "Click AND Boom - By : Jadi Hacker",
+                date: "September 2025",
+                imageUrl: "jadi hacker.jpeg"
+            },
+             {
+                id: 37,
+                title: "Certificate of Appreciation",
+                issuer: "Computer Security Insident Respond Team Purbalingga",
+                date: "February 2026",
+                imageUrl: "PURBALINGGA.jpeg"
+            },
+            {
+                id: 38,
+                title: "Certificate of Appreciation",
+                issuer: "Dinas Komunikasi Informatika dan Persandian Kota Yogyakarta",
+                date: "February 2026",
+                imageUrl: "JOGJAKAB.jpeg"
+            },
+             {
+                id: 39,
+                title: "Certificate of Completion",
+                issuer: "Introduction to CyberSecurity - By : Cisco Networking Academy",
+                date: "February 2026",
+                imageUrl: "CIS.jpeg"
+            },
+             {
+                id: 40,
+                title: "Certificate of Completion",
+                issuer: "Introduction to CyberSecurity & Career Awareness - By : Komdigi Academy",
+                date: "February 2026",
+                imageUrl: "pelatihan komdigi.jpeg"
+            },
+             {
+                id: 41,
+                title: "Certificate of Completion",
+                issuer: "generative basis of AI use - By : Ruang AI Codepolitan",
+                date: "February 2026",
+                imageUrl: "RAI.jpeg"
+            },
+             {
+                id: 42,
+                title: "Certificate of Appreciation",
+                issuer: "Dinas Komunikasi Informatika dan Persandian Provinsi Sulawesi Tengah",
+                date: "February 2026",
+                imageUrl: "SULTENG.jpeg"
+            },
+             {
+                id: 43,
+                title: "Certificate of Completion",
+                issuer: "data science with microsoft fabric - By : Dicoding",
+                date: "February 2026",
+                imageUrl: "FAB.jpeg"
+            },
+             {
+                id: 44,
+                title: "Certificate of Appreciation",
+                issuer: "Dinas Komunikasi Informatika dan Persandian Provinsi kalimantan barat",
+                date: "February 2026",
+                imageUrl: "KALBAR.jpeg"
+            },
+            {
+                id: 45,
+                title: "Certificate of Appreciation",
+                issuer: "Dinas Komunikasi Informatika dan Persandian DKI Jakarta",
+                date: "February 2026",
+                imageUrl: "JAKARTA.jpeg"
+            },
+            {
+                id: 46,
+                title: "Certificate of Appreciation",
+                issuer: "Dinas Komunikasi Informatika dan Persandian Provinsi Kepualauan Bangka Belitung",
+                date: "February 2026",
+                imageUrl: "BABEL.jpeg"
+            },
+             {
+                id: 47,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Merdeka Madiun",
+                date: "January 2026",
+                imageUrl: "UNMER.jpeg"
+            },
+            {
+                id: 48,
+                title: "Certificate of Appreciation",
+                issuer: "Dinas Komunikasi Dan Informatika Kabupaten Bantul",
+                date: "april 2026",
+                imageUrl: "bantulkab.jpeg"
+            },
+            {
+                id: 49,
+                title: "Certificate of Appreciation",
+                issuer: "Radio Republik Indonesia",
+                date: "april 2026",
+                imageUrl: "RRI.jpeg"
+            },
+            {
+                id: 50,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Darunnajah",
+                date: "april 2026",
+                imageUrl: "univ darunajah.jpeg"
+            },
+            {
+                id: 51,
+                title: "Certificate of Appreciation",
+                issuer: "Universitas Tarumanagara",
+                date: "april 2026",
+                imageUrl: "untar.jpeg"
+            },
+
+        ];
+
+        // Efek Matrix
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$+-*/=%"\'#&_(),.;:?!\\|{}<>[]^~';
+        const lettersArray = letters.split('');
+
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for(let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        // Efek typing text
+        const typingText = document.getElementById('typingText');
+        const texts = [
+            "> Ethical Hacker & Cybersecurity Expert",
+            "> THE PHONIXXLZ110",
+            "> Penetration Tester & Security Researcher",
+            "> Digital Forensics Specialist",
+            "> Network Security Analyst",
+            "> AI Development",
+            "> Sensitive Data Exposure Analysis",
+            "> حفظ الثلاثين جزءًا من القرآن",
+            "> Injection Analysis"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isEnd = false;
+
+        function typeText() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = "> " + currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = "> " + currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isEnd = true;
+                isDeleting = true;
+                setTimeout(typeText, 2000);
+                return;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex++;
+                if (textIndex === texts.length) {
+                    textIndex = 0;
+                }
+            }
+
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(typeText, speed);
+        }
+
+        // Modal untuk sertifikat
+        const certificateModal = document.getElementById('certificateModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalIssuer = document.getElementById('modalIssuer');
+        const modalDate = document.getElementById('modalDate');
+        const modalDescription = document.getElementById('modalDescription');
+
+        // Fungsi untuk menampilkan modal sertifikat
+        function showCertificateModal(certificate) {
+            modalImage.src = certificate.imageUrl;
+            modalTitle.textContent = certificate.title;
+            modalIssuer.textContent = `Issuer: ${certificate.issuer}`;
+            modalDate.textContent = `Date: ${certificate.date}`;
+            modalDescription.textContent = certificate.description;
+            certificateModal.style.display = 'flex';
+        }
+
+        closeModal.addEventListener('click', function() {
+            certificateModal.style.display = 'none';
+        });
+
+        certificateModal.addEventListener('click', function(e) {
+            if (e.target === certificateModal) {
+                certificateModal.style.display = 'none';
+            }
+        });
+
+        // Pagination untuk sertifikat
+        let currentPage = 1;
+        const certificatesPerPage = 10;
+        const totalPages = Math.ceil(certificatesData.length / certificatesPerPage);
+
+        // Fungsi untuk menampilkan sertifikat berdasarkan halaman
+        function displayCertificates(page) {
+            const container = document.getElementById('certificatesContainer');
+            container.innerHTML = '';
+            
+            const startIndex = (page - 1) * certificatesPerPage;
+            const endIndex = Math.min(startIndex + certificatesPerPage, certificatesData.length);
+            
+            for (let i = startIndex; i < endIndex; i++) {
+                const cert = certificatesData[i];
+                const certificateCard = document.createElement('div');
+                certificateCard.className = 'certificate-card';
+                certificateCard.innerHTML = `
+                    <img src="${cert.imageUrl}" alt="${cert.title}" class="certificate-img">
+                    <h3>${cert.title}</h3>
+                    <p class="issuer">${cert.issuer}</p>
+                    <p class="date">${cert.date}</p>
+                `;
+                
+                certificateCard.addEventListener('click', function() {
+                    showCertificateModal(cert);
+                });
+                
+                container.appendChild(certificateCard);
+            }
+            
+            // Update informasi halaman
+            document.getElementById('currentPageInfo').textContent = `Halaman ${page} dari ${totalPages}`;
+            
+            // Update pagination buttons
+            updatePagination(page);
+        }
+
+        // Fungsi untuk update pagination buttons
+        function updatePagination(currentPage) {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            
+            // Previous button
+            if (currentPage > 1) {
+                const prevButton = document.createElement('button');
+                prevButton.innerHTML = '<i class="fas fa-chevron-left"></i> Prev';
+                prevButton.addEventListener('click', function() {
+                    displayCertificates(currentPage - 1);
+                });
+                pagination.appendChild(prevButton);
+            }
+            
+            // Page buttons
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                if (i === currentPage) {
+                    pageButton.classList.add('active');
+                }
+                pageButton.addEventListener('click', function() {
+                    displayCertificates(i);
+                });
+                pagination.appendChild(pageButton);
+            }
+            
+            // Next button
+            if (currentPage < totalPages) {
+                const nextButton = document.createElement('button');
+                nextButton.innerHTML = 'Next <i class="fas fa-chevron-right"></i>';
+                nextButton.addEventListener('click', function() {
+                    displayCertificates(currentPage + 1);
+                });
+                pagination.appendChild(nextButton);
+            }
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Recalculate columns for matrix effect
+            const columns = canvas.width / fontSize;
+            drops.length = 0;
+            for(let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+        });
+
+        // Initialize
+        window.onload = function() {
+            // Start matrix animation
+            setInterval(drawMatrix, 50);
+            
+            // Start typing effect
+            setTimeout(typeText, 1000);
+            
+            // Add glitch effect to title
+            const logo = document.querySelector('.logo');
+            logo.classList.add('glitch');
+            logo.setAttribute('data-text', logo.textContent);
+            
+            // Display first page of certificates
+            displayCertificates(1);
+        };
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Add blinking effect to some elements
+        setInterval(() => {
+            const randomElement = document.querySelector('.skill-card:nth-child(' + Math.floor(Math.random() * 8 + 1) + ')');
+            randomElement.classList.add('blink');
+            setTimeout(() => {
+                randomElement.classList.remove('blink');
+            }, 1000);
+        }, 3000);
+    </script>
+</body>
+</html>
