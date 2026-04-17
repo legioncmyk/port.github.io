@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker Portfolio - THE PHONIXXLZ1100</title>
-    <link rel="stylesheet" href="https://drive.google.com/file/d/1aVzI3SMGa0J1TFuCQr754RXMvpAhwe7I/view?usp=sharing"
+    <link rel="stylesheet" href="https://drive.google.com/file/d/1aVzI3SMGa0J1TFuCQr754RXMvpAhwe7I/view?usp=drive_link">
     <style>
         * {
             margin: 0;
@@ -674,6 +674,30 @@
     </div>
 
     <script>
+        // ========== FUNGSI KONVERSI LINK GOOGLE DRIVE ==========
+        // Format yang didukung:
+        //   https://drive.google.com/file/d/FILE_ID/view?usp=drive_link
+        //   https://drive.google.com/file/d/FILE_ID/view
+        //   https://drive.google.com/open?id=FILE_ID
+        // Dikonversi ke format paling reliable:
+        //   https://lh3.googleusercontent.com/d/FILE_ID
+        function convertDriveUrl(url) {
+            if (!url) return url;
+            // Pola 1: /file/d/FILE_ID/
+            var match = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+            if (match) {
+                return 'https://lh3.googleusercontent.com/d/' + match[1];
+            }
+            // Pola 2: /open?id=FILE_ID
+            match = url.match(/drive\.google\.com\/open\?id=([a-zA-Z0-9_-]+)/);
+            if (match) {
+                return 'https://lh3.googleusercontent.com/d/' + match[1];
+            }
+            // Bukan link Google Drive, kembalikan asli
+            return url;
+        }
+        // ======================================================
+
         // Data untuk 40 sertifikat apresiasi cyber
         const certificatesData = [
             // Halaman 1 (1-10)
@@ -1126,7 +1150,7 @@
 
         // Fungsi untuk menampilkan modal sertifikat
         function showCertificateModal(certificate) {
-            modalImage.src = certificate.imageUrl;
+            modalImage.src = convertDriveUrl(certificate.imageUrl);
             modalTitle.textContent = certificate.title;
             modalIssuer.textContent = `Issuer: ${certificate.issuer}`;
             modalDate.textContent = `Date: ${certificate.date}`;
@@ -1162,7 +1186,7 @@
                 const certificateCard = document.createElement('div');
                 certificateCard.className = 'certificate-card';
                 certificateCard.innerHTML = `
-                    <img src="${cert.imageUrl}" alt="${cert.title}" class="certificate-img">
+                    <img src="${convertDriveUrl(cert.imageUrl)}" alt="${cert.title}" class="certificate-img">
                     <h3>${cert.title}</h3>
                     <p class="issuer">${cert.issuer}</p>
                     <p class="date">${cert.date}</p>
@@ -1249,6 +1273,12 @@
             const logo = document.querySelector('.logo');
             logo.classList.add('glitch');
             logo.setAttribute('data-text', logo.textContent);
+
+            // Konversi link Google Drive pada gambar profil
+            var profileImg = document.querySelector('.profile-img');
+            if (profileImg) {
+                profileImg.src = convertDriveUrl(profileImg.src);
+            }
             
             // Display first page of certificates
             displayCertificates(1);
